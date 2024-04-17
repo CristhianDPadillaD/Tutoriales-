@@ -79,7 +79,7 @@
 
 
                             <td><%= tutorial.getCategoria()%></td>
-                           <td><a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-nombre= "<% tutorial.getIdTutorial();%>"><i class="fa-solid fa-eye"></i></a>
+                           <td><a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-nombre="<%= tutorial.getIdTutorial()%>"><i class="fa-solid fa-eye"></i></a>
                         </tr>
                         <% } %>
                         </tr>
@@ -214,26 +214,26 @@
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
            
         <script>
-            
-            // funcion para mostrar los datos en la ventana modal
-  $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // BotÃ³n que desencadenÃ³ el evento
-    var titulo = button.data('nombre'); // ObtÃ©n el nombre del contacto
+$('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Botón que desencadenó el evento
+    var idTutorial = button.data('nombre'); // Obtén el ID del tutorial
 
-    // Realiza una solicitud AJAX al servlet para obtener los detalles del perro por su nombre
+    // Realiza una solicitud AJAX al servlet para obtener los detalles del tutorial por su ID
     $.ajax({
-      url: 'SvListar?nombre=' + titulo, // Cambia 'id' por el nombre del parÃ¡metro que esperas en tu servlet
-      method: 'GET',
-      success: function (data) {
-        // Actualiza el contenido del modal con los detalles del perro
-        $('#contacto-details').html(data);
-      },
-      error: function () {
-        // Maneja errores aquÃ­ si es necesario y se imprime en consola
-        console.log('Error al cargar los detalles del contacto.');
-      }
+        url: 'SvListar?nombre=' + idTutorial, // Utiliza 'id' como nombre del parámetro
+        method: 'GET',
+        success: function (data) {
+            // Actualiza el contenido del modal con los detalles del tutorial
+            $('#contacto-details').html(data);
+        },
+        error: function () {
+            // Maneja errores aquí si es necesario y se imprime en consola
+            console.log('Error al cargar los detalles del tutorial.');
+            console.log( 'jsp'+ idTutorial);
+        }
     });
-  });
+});
+
         </script>
     </body>
 

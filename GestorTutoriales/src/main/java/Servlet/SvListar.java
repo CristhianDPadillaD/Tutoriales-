@@ -33,33 +33,41 @@ public class SvListar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  
-        // Obtener el ID del tutorial desde los parámetros de la solicitud
-        int id = Integer.parseInt(request.getParameter("nombre"));
-        System.out.println(id);
         
-        // Obtener una instancia de Conexion
-        Conexion conexion = new Conexion();
-            
-        // Obtener los detalles del tutorial según el identificador
-        Tutorial tutorial = conexion.obtenerTutorialPorId(id);
         
-        // Crear el HTML para mostrar los detalles del tutorial
-        String htmlResponse = "<h2>Detalles del Tutorial</h2>";
-        htmlResponse += "<p><strong>Nombre:</strong> " + tutorial.getNombre() + "</p>";
-        htmlResponse += "<p><strong>Categoría:</strong> " + tutorial.getCategoria() + "</p>";
-        htmlResponse += "<p><strong>URL:</strong> " + tutorial.getUrl() + "</p>";
-        htmlResponse += "<p><strong>Estado:</strong> " + tutorial.getEstado() + "</p>";
-        // Agregar más detalles según sea necesario
-        
-        // Enviar la respuesta al cliente
-        try (PrintWriter out = response.getWriter()) {
-            out.println(htmlResponse);
-        }
-            processRequest(request, response);
-    }
+  String idString = request.getParameter("nombre");
     
+    if (idString != null && !idString.isEmpty()) {
+    
+            int id = Integer.parseInt(idString);
+            System.out.println("ID del tutorial: " + id);
 
+            // Obtener los detalles del tutorial según el identificador
+            Conexion conexion = new Conexion();
+            Tutorial tutorial = conexion.obtenerTutorialPorId(id);
+            
+            
+            response.setContentType("text/html"); // Mover aquí la configuración del tipo de contenido y la codificación de caracteres
+
+    String tutorialHtml = "<h2>Titulo:" + tutorial.getNombre() + "</h2>" +
+            "<p>Categoria: " + tutorial.getCategoria() + "</p>" +
+            "<p>Estado: " + tutorial.getEstado() + "</p>" +
+            "<p>URL: " + tutorial.getUrl() + "</p>" ;
+         
+      System.out.println(" Tutorial: " + tutorialHtml);
+
+    response.getWriter().write(tutorialHtml);
+            // Enviar la respuesta al cliente
+           
+       processRequest(request, response);
+                
+            
+    
+    
+    
+}
+    
+    }
  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

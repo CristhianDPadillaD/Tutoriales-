@@ -126,30 +126,36 @@ public class Conexion {
     }
    
    
-   public Tutorial obtenerTutorialPorId(int Id) {
-                   
-                   Tutorial tutorial = new Tutorial();
-        try (Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA)) {
-            String sql = "SELECT * FROM Tutoriales";
-            
-            try (PreparedStatement statement = conexion.prepareStatement(sql);
-                 ResultSet resultSet = statement.executeQuery()) {
-            
-                
-                    tutorial.setIdTutorial(resultSet.getInt("IdTutorial"));
-                    tutorial.setNombre(resultSet.getString("Nombre"));
-                    tutorial.setUrl(resultSet.getString("Url"));
-                    tutorial.setEstado(resultSet.getString("Estado"));
-                    tutorial.setPrioridad(resultSet.getInt("Prioridad"));
-                    tutorial.setCategoria(resultSet.getInt("IdCategoria"));
-           
-                
+public Tutorial obtenerTutorialPorId(int Id) {
+    Conexion conexion = new Conexion();
+    Tutorial tutorial = null;
+    
+    // Realizamos una consulta SQL para obtener el tutorial con el ID proporcionado
+    String sql = "SELECT * FROM Tutoriales WHERE IdTutorial = ?";
+    try (Connection connection = conexion.Conectar();
+         PreparedStatement statement = connection.prepareStatement(sql)) {
+        
+        statement.setInt(1, Id);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) { // Si hay resultados, creamos un objeto Tutorial
+                tutorial = new Tutorial();
+                tutorial.setIdTutorial(resultSet.getInt("IdTutorial"));
+                tutorial.setNombre(resultSet.getString("Nombre"));
+                tutorial.setUrl(resultSet.getString("Url"));
+                tutorial.setEstado(resultSet.getString("Estado"));
+                tutorial.setPrioridad(resultSet.getInt("Prioridad"));
+                tutorial.setCategoria(resultSet.getInt("IdCategoria"));
+            } else {
+                System.out.println("No se encontró un tutorial con el ID proporcionado: " + Id);
             }
-        } catch (SQLException ex) {
-            System.out.println("Error al buscar el tutorial" + ex.getMessage());
         }
-        return tutorial;
-   }
-        }
+    } catch (SQLException ex) {
+        System.out.println("Error al obtener el tutorial con el ID proporcionado: " + ex.getMessage());
+    }
+    
+    return tutorial;
+}
+
+}
     
 
