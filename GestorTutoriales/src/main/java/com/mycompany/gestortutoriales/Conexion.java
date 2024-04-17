@@ -7,12 +7,13 @@ package com.mycompany.gestortutoriales;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import com.mycompany.gestortutoriales.Tutorial;
-import java.sql.DriverManager;
+import java.sql.DriverManager; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -126,7 +127,7 @@ public class Conexion {
     }
    
    
-public Tutorial obtenerTutorialPorId(int Id) {
+public Tutorial obtenerTutorialPorId(int Id, ServletContext context) {
     Conexion conexion = new Conexion();
     Tutorial tutorial = null;
     
@@ -156,6 +157,38 @@ public Tutorial obtenerTutorialPorId(int Id) {
     return tutorial;
 }
 
+
+public String buscarCategoria (int id) throws SQLException {
+     String nombreCategoria = null;
+
+        // Establecer la conexión a la base de datos
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.Conectar();
+
+        // Consulta SQL para obtener el nombre de la categoría por su ID
+        String sql = "SELECT Categoria FROM Categorias WHERE IdCategoria = ?";
+        
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            // Establecer el ID de la categoría como parámetro de la consulta
+            statement.setInt(1, id);
+
+            // Ejecutar la consulta
+            try (ResultSet resultSet = statement.executeQuery()) {
+                // Si se encuentra una fila, obtener el nombre de la categoría
+                if (resultSet.next()) {
+                    nombreCategoria = resultSet.getString("Categoria");
+                } else {
+                    System.out.println("No se encontró una categoría con el ID proporcionado: " + id);
+                }
+            }
+        }
+
+        
+
+        return nombreCategoria;
+    }
 }
+    
+  
     
 

@@ -23,6 +23,7 @@
         // Llamar al método ConsultaCategorias para obtener las categorías
         String categorias = conexion.ConsultaCategorias();
         List<Tutorial> tutoriales = conexion.listarTutoriales();
+        
     %>
 
     <head>
@@ -75,10 +76,11 @@
                             %>
                         <tr>
 
-                            <td><%= tutorial.getNombre()%></td>
 
 
                             <td><%= tutorial.getCategoria()%></td>
+                            
+                            <td><%= tutorial.getNombre()%></td>
                            <td><a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-nombre="<%= tutorial.getIdTutorial()%>"><i class="fa-solid fa-eye"></i></a>
                         </tr>
                         <% } %>
@@ -170,26 +172,6 @@
 
         </main><!-- End #main -->
 
-                              <!-- Modal de confirmacion de la accion eliminar  -->           
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
-         <div class="modal-dialog"> 
-             <div class="modal-content"> 
-                 <div class="modal-header"> 
-                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Contacto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
-                 </div>
-                 <div class="modal-body"> 
-                  
-                     <div id="contacto-details"> 
-                         <!-- AquÃ­ se aÃ±ade los detalles del contacto-->
-                </div>
-                 </div> 
-                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> 
-                </div>
-             </div> 
-         </div> 
-     </div>
 
         
         <!-- ======= Footer ======= -->
@@ -202,7 +184,33 @@
             </div>
         </footer><!-- End #footer -->
 
+      
+   
+                              
+                              
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        
+        
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+         <div class="modal-dialog"> 
+             <div class="modal-content"> 
+                 <div class="modal-header"> 
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Libro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+                 </div>
+                 <div class="modal-body"> 
+                  
+                     <div id="libro-details"> 
+                         <!-- AquÃ­ se aÃ±ade los detalles del perro-->
+                </div>
+                 </div> 
+                 <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> 
+                </div>
+             </div> 
+         </div> 
+     </div>
+        
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -214,27 +222,27 @@
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
            
         <script>
-$('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Botón que desencadenó el evento
-    var idTutorial = button.data('nombre'); // Obtén el ID del tutorial
+    // funcion para mostrar los datos en la ventana modal
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // BotÃ³n que desencadenÃ³ el evento
+    var nombre = button.data('nombre'); // ObtÃ©n el nombre del perro
 
-    // Realiza una solicitud AJAX al servlet para obtener los detalles del tutorial por su ID
+    // Realiza una solicitud AJAX al servlet para obtener los detalles del perro por su nombre
     $.ajax({
-        url: 'SvListar?nombre=' + idTutorial, // Utiliza 'id' como nombre del parámetro
-        method: 'GET',
-        success: function (data) {
-            // Actualiza el contenido del modal con los detalles del tutorial
-            $('#contacto-details').html(data);
-        },
-        error: function () {
-            // Maneja errores aquí si es necesario y se imprime en consola
-            console.log('Error al cargar los detalles del tutorial.');
-            console.log( 'jsp'+ idTutorial);
-        }
+      url: 'SvListar?nombre=' + nombre, // Cambia 'id' por el nombre del parÃ¡metro que esperas en tu servlet
+      method: 'GET',
+      success: function (data) {
+        // Actualiza el contenido del modal con los detalles del perro
+        $('#libro-details').html(data);
+      },
+      error: function () {
+        // Maneja errores aquÃ­ si es necesario y se imprime en consola
+        console.log('Error al cargar los detalles del libro.');
+      }
     });
-});
-
-        </script>
+  });
+  
+</script>
     </body>
 
 </html>
