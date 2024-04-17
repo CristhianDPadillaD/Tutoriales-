@@ -6,7 +6,8 @@
 
 <%@page import="com.mycompany.gestortutoriales.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="com.mycompany.gestortutoriales.Conexion" %>
+<%@ page import="com.mycompany.gestortutoriales.Conexion" %>    
+<%@ page import="com.mycompany.gestortutoriales.Tutorial" %>
 
 <!DOCTYPE html>
 
@@ -22,7 +23,7 @@
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>ComingSoon - Bootstrap Coming Soon Template</title>
+        <title>Gestor de Tutoriales Online</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -49,7 +50,28 @@
 
                 <h1>Tutoriales</h1>
                 <h2>pagina de tutoriales</h2>
-
+<table class="table">
+  <thead>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Acciones</th>
+  </thead>
+  <tbody>
+ 
+ 
+    <tr>
+      <th scope="row">3</th>
+      
+ 
+        <c:forEach var="tutorial" items="${tutoriales}">
+        <tr>
+            <td>${tutorial.nombre}</td>
+            <td>${tutorial.Categoria}</td>
+        </tr>
+    </c:forEach>
+    </tr>
+  </tbody>
+</table>
             </div>
         </header><!-- End #header -->
 
@@ -98,28 +120,29 @@
                             <form action="SvAgregar" method="get">
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
+                                        <input type="text" name="Nombre" class="form-control" id="Nombre " placeholder="Nombre" required>
                                     </div>
                                     <div class="col-md-6 form-group mt-3 mt-md-0">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Prioridad" required>
+                                        <input type="num" class="form-control" name="Prio" id="Prio" placeholder="Prioridad" required>
                                     </div>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Estado" required>
+                                    <input type="text" class="form-control" name="Estado" id="Estado" placeholder="Estado" required>
                                 </div >
                                 <div class="form-group mt-3">
                                     <li>
                                         <select name="Categoria" placeholder="Categoria">
-                                            <%-- Agrega una opción para cada categoría --%>
                                             <% String[] categoriasArray = categorias.split(", "); %>
-                                            <% for (String categoria : categoriasArray) {%>
-                                            <option value="<%=categoria%>"><%=categoria%></option>
+                                            <% for (int i = 0; i < categoriasArray.length; i++) {%>
+                                            <option value="<%=i + 1%>"><%=categoriasArray[i]%></option>
                                             <% }%>
                                         </select>
+
                                     </li>
                                 </div >
                                 <div class="form-group mt-3">
-                                    <textarea class="form-control" name="message" rows="5" placeholder="Url" required></textarea>
+                                    <input  type ="textarea" class="form-control" name="URL" rows="5" placeholder="Url" required>
+
                                 </div>
                                 <div class="text-center"><input type="submit" name="name" value="Conectar"></div>
                             </form>

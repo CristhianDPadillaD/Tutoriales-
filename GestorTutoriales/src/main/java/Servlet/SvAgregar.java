@@ -39,11 +39,11 @@ public class SvAgregar extends HttpServlet {
             throws ServletException, IOException {
       
         String Nombre = request.getParameter("Nombre");
-        String Url = request.getParameter("URL");
+            String Url = request.getParameter("URL");
         String Estado = request.getParameter("Estado");
         int Prioridad = Integer.parseInt(request.getParameter("Prio"));
 
-        int IdCategoria = 1;
+        int IdCategoria = Integer.parseInt(request.getParameter("Categoria"));
         Connection agregarCon = con.Conectar();
 
         con.AgregarTutorial(Nombre, Url, Estado, Prioridad, IdCategoria, agregarCon);

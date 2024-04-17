@@ -6,10 +6,13 @@ package com.mycompany.gestortutoriales;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import com.mycompany.gestortutoriales.Tutorial;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -58,7 +61,7 @@ public class Conexion {
                 stmt.setInt(5, IdCategoria);
                 stmt.execute();
                 agregarCon.close();
-                System.out.println("Conexion exitosa");
+                System.out.println("Se agrego con exito ");
             } catch (SQLException e) { // Manejar cualquier error de SQL
                 System.out.println("Error al agregar pruebe de nuevo" + e.getMessage());
             }
@@ -98,7 +101,33 @@ public class Conexion {
     }
     return categoriasStr.toString();
 }
-
-        
+    
+       public List<Tutorial> obtenerTutoriales(Connection conexion) {
+    List<Tutorial> tutoriales = new ArrayList<>();
+    try {
+        // Realiza la consulta a la tabla de tutoriales
+        PreparedStatement stmt = conexion.prepareStatement("SELECT * FROM Tutoriales");
+        ResultSet rs = stmt.executeQuery();
+        // Itera sobre el resultado y crea objetos Tutorial
+        while (rs.next()) {
+            Tutorial tutorial = new Tutorial();
+            tutorial.setNombre(rs.getString("Nombre"));
+            tutorial.setUrl(rs.getString("Url"));
+            tutorial.setEstado(rs.getString("Estado"));
+            tutorial.setPrioridad(rs.getInt("Prioridad"));
+            tutorial.setCategoria(rs.getInt("IdCategoria"));
+            tutoriales.add(tutorial);
+        }
+        // Cierra los recursos
+        rs.close();
+        stmt.close();
+        conexion.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Maneja la excepción apropiadamente
     }
+    return tutoriales;
+}
+        }
+    
 
