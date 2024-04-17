@@ -78,7 +78,7 @@
 
 
 
-                            <td><%= tutorial.getCategoria()%></td>
+                            <td><%= tutorial.getNombreCategoria()%></td>
                             
                             <td><%= tutorial.getNombre()%></td>
                            <td><a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-nombre="<%= tutorial.getIdTutorial()%>"><i class="fa-solid fa-eye"></i></a>
@@ -146,17 +146,15 @@
                                 <div class="form-group mt-3">
                                     <input type="text" class="form-control" name="Estado" id="Estado" placeholder="Estado" required>
                                 </div >
-                                <div class="form-group mt-3">
-                                    <li>
-                                        <select name="Categoria" placeholder="Categoria">
-                                            <% String[] categoriasArray = categorias.split(", "); %>
-                                            <% for (int i = 0; i < categoriasArray.length; i++) {%>
-                                            <option value="<%=i + 1%>"><%=categoriasArray[i]%></option>
-                                            <% }%>
-                                        </select>
-
-                                    </li>
-                                </div >
+                               <div class="form-group mt-3">
+    <select class="form-select" name="Categoria" placeholder="Categoria">
+        <% String[] categoriasArray = categorias.split(", "); %>
+        <% for (int i = 0; i < categoriasArray.length; i++) { %>
+            <option value="<%=i + 1%>"><%=categoriasArray[i]%></option>
+        <% } %>
+    </select>
+</div>
+    
                                 <div class="form-group mt-3">
                                     <input  type ="textarea" class="form-control" name="URL" rows="5" placeholder="Url" required>
 

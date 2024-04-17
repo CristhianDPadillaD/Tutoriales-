@@ -10,8 +10,9 @@ CREATE TABLE Categorias (
     Categoria VARCHAR(50)
 );
 
-INSERT INTO Categorias(Categoria)
-VALUES ("lógica de programación"), ("Flutter"), ("Node.js"), ("Desarrollo Web"), ("Big Data"), ("Cloud Computing"), ("Desarrollo Móvil");
+INSERT INTO Categorias (Categoria)
+VALUES ('lógica de programación'), ('Flutter'), ('Node.js'), ('Desarrollo Web'), ('Big Data'), ('Cloud Computing'), ('Desarrollo Móvil');
+
 
 CREATE TABLE Tutoriales (
     IdTutorial INT PRIMARY KEY AUTO_INCREMENT,

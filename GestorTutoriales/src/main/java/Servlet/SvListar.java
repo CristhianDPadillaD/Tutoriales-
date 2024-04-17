@@ -51,7 +51,7 @@ public class SvListar extends HttpServlet {
           // Mover aquí la configuración del tipo de contenido y la codificación de caracteres
 
     String tutorialHtml = "<h2>Titulo:" + tutorial.getNombre() + "</h2>" +
-            "<p>Categoria: " + tutorial.getCategoria() + "</p>" +
+            "<p>Categoria: " + tutorial.getNombreCategoria() + "</p>" +
             "<p>Estado: " + tutorial.getEstado() + "</p>" +
             "<p>URL: " + tutorial.getUrl() + "</p>" ;
       response.setContentType("text/html"); 

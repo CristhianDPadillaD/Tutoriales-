@@ -6,6 +6,14 @@ body {
   position: relative;
 }
 
+.modal-body {
+    color:black;
+}
+
+li{
+    list-style-type: none;
+}
+
 body::before {
   content: "";
   position: absolute;

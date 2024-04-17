@@ -64,6 +64,16 @@ public class Tutorial {
         this.categoria = categoria;
     }
     
-    
+    public String getNombreCategoria() {
+        
+    String[] categoriasArray =  {"lógica de programación","Flutter", "Node.js", "Desarrollo Web", "Big Data", "Cloud Computing", "Desarrollo Móvil"}; 
+    int categoriaIndex = this.getCategoria() - 1; // Restamos 1 porque los índices en arrays comienzan en 0
+    if (categoriaIndex >= 0 && categoriaIndex < categoriasArray.length) {
+        
+        
+        return categoriasArray[categoriaIndex];
+    }
+    return "Categoría no encontrada";
+}   
     
 }
