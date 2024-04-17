@@ -102,32 +102,54 @@ public class Conexion {
     return categoriasStr.toString();
 }
     
-       public List<Tutorial> obtenerTutoriales(Connection conexion) {
-    List<Tutorial> tutoriales = new ArrayList<>();
-    try {
-        // Realiza la consulta a la tabla de tutoriales
-        PreparedStatement stmt = conexion.prepareStatement("SELECT * FROM Tutoriales");
-        ResultSet rs = stmt.executeQuery();
-        // Itera sobre el resultado y crea objetos Tutorial
-        while (rs.next()) {
-            Tutorial tutorial = new Tutorial();
-            tutorial.setNombre(rs.getString("Nombre"));
-            tutorial.setUrl(rs.getString("Url"));
-            tutorial.setEstado(rs.getString("Estado"));
-            tutorial.setPrioridad(rs.getInt("Prioridad"));
-            tutorial.setCategoria(rs.getInt("IdCategoria"));
-            tutoriales.add(tutorial);
+   public List<Tutorial> listarTutoriales() {
+        List<Tutorial> tutoriales = new ArrayList<>();
+        try (Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA)) {
+            String sql = "SELECT * FROM Tutoriales";
+            try (PreparedStatement statement = conexion.prepareStatement(sql);
+                 ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Tutorial tutorial = new Tutorial();
+                     tutorial.setIdTutorial(resultSet.getInt("IdTutorial"));
+                    tutorial.setNombre(resultSet.getString("Nombre"));
+                    tutorial.setUrl(resultSet.getString("Url"));
+                    tutorial.setEstado(resultSet.getString("Estado"));
+                    tutorial.setPrioridad(resultSet.getInt("Prioridad"));
+                    tutorial.setCategoria(resultSet.getInt("IdCategoria"));
+                    tutoriales.add(tutorial);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al listar los tutoriales: " + ex.getMessage());
         }
-        // Cierra los recursos
-        rs.close();
-        stmt.close();
-        conexion.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Maneja la excepción apropiadamente
+        return tutoriales;
     }
-    return tutoriales;
-}
+   
+   
+   public Tutorial obtenerTutorialPorId(int Id) {
+                   
+                   Tutorial tutorial = new Tutorial();
+        try (Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA)) {
+            String sql = "SELECT * FROM Tutoriales";
+            
+            try (PreparedStatement statement = conexion.prepareStatement(sql);
+                 ResultSet resultSet = statement.executeQuery()) {
+            
+                
+                    tutorial.setIdTutorial(resultSet.getInt("IdTutorial"));
+                    tutorial.setNombre(resultSet.getString("Nombre"));
+                    tutorial.setUrl(resultSet.getString("Url"));
+                    tutorial.setEstado(resultSet.getString("Estado"));
+                    tutorial.setPrioridad(resultSet.getInt("Prioridad"));
+                    tutorial.setCategoria(resultSet.getInt("IdCategoria"));
+           
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar el tutorial" + ex.getMessage());
+        }
+        return tutorial;
+   }
         }
     
 

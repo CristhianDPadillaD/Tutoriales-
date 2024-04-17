@@ -55,17 +55,7 @@ public class SvAgregar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-//        // Preparar la consulta SQL para obtener todas las categorías
-//        Connection categoria = con.Conectar();
-//        PreparedStatement stmt = categoria.prepareStatement("SELECT idCategoria, categoria FROM Categorias");
-//
-//        // Ejecutar la consulta y obtener el resultado
-//        ResultSet rs = stmt.executeQuery();
-//        
-//        while (rs.next() != null){
-//       categorias.add(rs.getString("categoria"));
-//    }
+ 
     }
 
     @Override

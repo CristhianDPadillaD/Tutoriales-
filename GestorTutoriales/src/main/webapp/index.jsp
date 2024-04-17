@@ -7,7 +7,11 @@
 <%@page import="com.mycompany.gestortutoriales.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="com.mycompany.gestortutoriales.Conexion" %>    
+<%@ page import="com.mycompany.gestortutoriales.Conexion" %>
 <%@ page import="com.mycompany.gestortutoriales.Tutorial" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.*" %>
 
 <!DOCTYPE html>
 
@@ -18,6 +22,7 @@
 
         // Llamar al método ConsultaCategorias para obtener las categorías
         String categorias = conexion.ConsultaCategorias();
+        List<Tutorial> tutoriales = conexion.listarTutoriales();
     %>
 
     <head>
@@ -40,6 +45,8 @@
 
         <!-- Template Main CSS File -->
         <link href="estilos/style.css" rel="stylesheet">
+        
+          <script src="Script/Script.js" type="text/javascript"></script>
     </head>
     <body  >
 
@@ -50,28 +57,36 @@
 
                 <h1>Tutoriales</h1>
                 <h2>pagina de tutoriales</h2>
-<table class="table">
-  <thead>
-                                    <th scope="col">Categoria</th>
-                                    <th scope="col">Titulo</th>
-                                    <th scope="col">Acciones</th>
-  </thead>
-  <tbody>
- 
- 
-    <tr>
-      <th scope="row">3</th>
-      
- 
-        <c:forEach var="tutorial" items="${tutoriales}">
-        <tr>
-            <td>${tutorial.nombre}</td>
-            <td>${tutorial.Categoria}</td>
-        </tr>
-    </c:forEach>
-    </tr>
-  </tbody>
-</table>
+                <table class="table">
+                    <thead>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Ver</th>
+                    </thead>
+                    <tbody>
+
+
+                        <tr>
+
+                        <tr>
+                            <%
+                                // Iteramos sobre la lista de tutoriales y mostramos los detalles de cada tutorial en una tabla HTML
+                                for (Tutorial tutorial : tutoriales) {
+                            %>
+                        <tr>
+
+                            <td><%= tutorial.getNombre()%></td>
+
+
+                            <td><%= tutorial.getCategoria()%></td>
+                           <td><a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-nombre= "<% tutorial.getIdTutorial();%>"><i class="fa-solid fa-eye"></i></a>
+                        </tr>
+                        <% } %>
+                        </tr>
+
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </header><!-- End #header -->
 
@@ -155,6 +170,28 @@
 
         </main><!-- End #main -->
 
+                              <!-- Modal de confirmacion de la accion eliminar  -->           
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+         <div class="modal-dialog"> 
+             <div class="modal-content"> 
+                 <div class="modal-header"> 
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del Contacto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+                 </div>
+                 <div class="modal-body"> 
+                  
+                     <div id="contacto-details"> 
+                         <!-- AquÃ­ se aÃ±ade los detalles del contacto-->
+                </div>
+                 </div> 
+                 <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> 
+                </div>
+             </div> 
+         </div> 
+     </div>
+
+        
         <!-- ======= Footer ======= -->
         <footer id="footer">
             <div class="container">
@@ -173,7 +210,31 @@
 
         <!-- Template Main JS File -->
         <script src="estilos/script.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+           
+        <script>
+            
+            // funcion para mostrar los datos en la ventana modal
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // BotÃ³n que desencadenÃ³ el evento
+    var titulo = button.data('nombre'); // ObtÃ©n el nombre del contacto
 
+    // Realiza una solicitud AJAX al servlet para obtener los detalles del perro por su nombre
+    $.ajax({
+      url: 'SvListar?nombre=' + titulo, // Cambia 'id' por el nombre del parÃ¡metro que esperas en tu servlet
+      method: 'GET',
+      success: function (data) {
+        // Actualiza el contenido del modal con los detalles del perro
+        $('#contacto-details').html(data);
+      },
+      error: function () {
+        // Maneja errores aquÃ­ si es necesario y se imprime en consola
+        console.log('Error al cargar los detalles del contacto.');
+      }
+    });
+  });
+        </script>
     </body>
 
 </html>

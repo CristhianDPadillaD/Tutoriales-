@@ -1,5 +1,6 @@
 com\mycompany\gestortutoriales\Tutorial.class
-Servlet\SvAgregar.class
 com\mycompany\gestortutoriales\Conexion.class
-com\mycompany\gestortutoriales\JakartaRestConfiguration.class
 com\mycompany\gestortutoriales\resources\JakartaEE8Resource.class
+Servlet\SvListar.class
+Servlet\SvAgregar.class
+com\mycompany\gestortutoriales\JakartaRestConfiguration.class

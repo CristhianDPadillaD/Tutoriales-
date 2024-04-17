@@ -9,6 +9,15 @@ package com.mycompany.gestortutoriales;
  * @author ADMIN
  */
 public class Tutorial {
+    int IdTutorial;
+
+    public int getIdTutorial() {
+        return IdTutorial;
+    }
+
+    public void setIdTutorial(int IdTutorial) {
+        this.IdTutorial = IdTutorial;
+    }
     String nombre;
     String url;
     String estado;
