@@ -96,7 +96,7 @@
                 <td><%= categoria.getIdCategoria() %></td>
                 <td><%= categoria.getCategoria() %></td>
                  <td> <a href="#" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-nombre="<>"><i class="fa-solid fa-pencil"></i></a>
-                                   <a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarTareaModal" data-nombre="<%= categoria.getIdCategoria()%>"><i class="fa-solid fa-trash"></i></a></td>
+                           <a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarTareaModal" data-nombre="<%= categoria.getIdCategoria()%>"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
            
             <% } %>
@@ -218,12 +218,12 @@
                         <h4>¿Estás seguro de que deseas eliminar esta categoria?</h4>
                         <p id="contactoNombre"></p>
                         <form id="eliminarForm" action="SvEliminarCategoria" method="GET">
-                            <input type="hidden" id="SvEliminarCategoria" name="inputEliminar">
+                            <input type="hidden" id="SvEliminar" name="inputEliminar">
                         </form>
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" onclick="eliminarContacto()">Eliminar</button>
+                        <button type="button" class="btn btn-danger" onclick="eliminarCategoria()">Eliminar</button>
 
                     </div>
                 </div>
@@ -249,14 +249,15 @@
                 var nombreContacto = button.data('nombre'); // Obtén el nombre del contacto desde data-nombre
 
                 // Establecer el valor del campo oculto con el nombre del contacto
-                $('#SvEliminarTutorial').val(nombreContacto);
+                $('#SvEliminar').val(nombreContacto);
+                console.log(nombreContacto);
             });
 
 
         </script>   
 
         <script>
-            function eliminarContacto() {
+            function eliminarCategoria() {
                 $('#eliminarForm').submit(); // Enviar el formulario al servlet
             }
         </script>

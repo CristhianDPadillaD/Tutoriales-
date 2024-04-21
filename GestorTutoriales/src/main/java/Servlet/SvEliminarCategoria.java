@@ -48,7 +48,7 @@ public class SvEliminarCategoria extends HttpServlet {
                 gestorCategorias.eliminarCategoria(idCategoria);
 
                 // Redirigir a alguna página de éxito o mostrar un mensaje
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("categoria.jsp");
             } else {
                 // Si el parámetro está vacío, mostrar un mensaje de error o manejarlo según tu lógica
                 out.println("El parámetro idCategoria está vacío.");
