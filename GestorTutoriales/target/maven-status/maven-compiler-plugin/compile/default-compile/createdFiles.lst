@@ -1,6 +1,13 @@
 com\mycompany\gestortutoriales\Tutorial.class
+Servlet\SvAgregarCategoria.class
 com\mycompany\gestortutoriales\Conexion.class
 com\mycompany\gestortutoriales\resources\JakartaEE8Resource.class
-Servlet\SvListar.class
-Servlet\SvAgregar.class
+Servlet\SvEditarTutorial.class
+com\mycompany\gestortutoriales\GestorTutoriales.class
 com\mycompany\gestortutoriales\JakartaRestConfiguration.class
+Servlet\SvEliminarCategoria.class
+Servlet\SvEliminarTutorial.class
+Servlet\SvListar.class
+com\mycompany\gestortutoriales\GestorCategorias.class
+Servlet\SvAgregar.class
+com\mycompany\gestortutoriales\Categoria.class

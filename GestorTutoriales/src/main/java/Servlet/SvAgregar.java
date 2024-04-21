@@ -5,14 +5,9 @@
 package Servlet;
 
 import com.mycompany.gestortutoriales.Conexion;
+import com.mycompany.gestortutoriales.GestorTutoriales;
 import java.io.IOException;
-import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SvAgregar extends HttpServlet {
 
     Conexion con = new Conexion();
+    GestorTutoriales agregar = new GestorTutoriales();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,7 +42,7 @@ public class SvAgregar extends HttpServlet {
         int IdCategoria = Integer.parseInt(request.getParameter("Categoria"));
         Connection agregarCon = con.Conectar();
 
-        con.AgregarTutorial(Nombre, Url, Estado, Prioridad, IdCategoria, agregarCon);
+        agregar.AgregarTutorial(Nombre, Url, Estado, Prioridad, IdCategoria, agregarCon);
 
         response.sendRedirect("index.jsp");
 

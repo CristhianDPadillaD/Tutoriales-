@@ -4,7 +4,8 @@
  */
 package Servlet;
 
-import com.mycompany.gestortutoriales.Conexion;
+
+import com.mycompany.gestortutoriales.GestorTutoriales;
 import com.mycompany.gestortutoriales.Tutorial;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SvListar", urlPatterns = {"/SvListar"})
 public class SvListar extends HttpServlet {
-             Conexion conexion = new Conexion();
+             GestorTutoriales conexion = new GestorTutoriales();
 
   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +42,6 @@ public class SvListar extends HttpServlet {
     if (idString != null && !idString.isEmpty()) {
     
             int id = Integer.parseInt(idString);
-            System.out.println("ID del tutorial: " + id);
 
             // Obtener los detalles del tutorial según el identificador
    
@@ -52,11 +52,11 @@ public class SvListar extends HttpServlet {
 
     String tutorialHtml = "<h2>Titulo:" + tutorial.getNombre() + "</h2>" +
             "<p>Categoria: " + tutorial.getNombreCategoria() + "</p>" +
+            "<p>Prioridad: " + tutorial.getPrioridad() + "</p>" +
             "<p>Estado: " + tutorial.getEstado() + "</p>" +
             "<p>URL: " + tutorial.getUrl() + "</p>" ;
       response.setContentType("text/html"); 
-         
-      System.out.println(" Tutorial: " + tutorialHtml);
+
 
     response.getWriter().write(tutorialHtml);
             // Enviar la respuesta al cliente

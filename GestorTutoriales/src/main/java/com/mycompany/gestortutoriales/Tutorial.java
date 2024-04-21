@@ -4,6 +4,8 @@
  */
 package com.mycompany.gestortutoriales;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author ADMIN
@@ -64,16 +66,20 @@ public class Tutorial {
         this.categoria = categoria;
     }
     
-    public String getNombreCategoria() {
+  public String getNombreCategoria() {
+        String nombreCategoria = "Categoría no encontrada"; // Valor por defecto
         
-    String[] categoriasArray =  {"lógica de programación","Flutter", "Node.js", "Desarrollo Web", "Big Data", "Cloud Computing", "Desarrollo Móvil"}; 
-    int categoriaIndex = this.getCategoria() - 1; // Restamos 1 porque los índices en arrays comienzan en 0
-    if (categoriaIndex >= 0 && categoriaIndex < categoriasArray.length) {
+        // Crear una instancia de Conexion
+        GestorCategorias conexion = new GestorCategorias();
         
+        try {
+            // Llamar al método buscarCategoria de la instancia de Conexion para obtener el nombre de la categoría
+            nombreCategoria = conexion.buscarCategoria(this.getCategoria());
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el nombre de la categoría: " + e.getMessage());
+        }
         
-        return categoriasArray[categoriaIndex];
+        return nombreCategoria;
     }
-    return "Categoría no encontrada";
-}   
     
 }
