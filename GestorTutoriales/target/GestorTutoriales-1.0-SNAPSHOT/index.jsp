@@ -1,4 +1,5 @@
-        <%@page import="com.mycompany.gestortutoriales.GestorCategorias"%>
+        <%@page import="com.mycompany.gestortutoriales.Categoria"%>
+<%@page import="com.mycompany.gestortutoriales.GestorCategorias"%>
 <%-- 
             Document   : index
             Created on : 15/04/2024, 5:35:05 p. m.
@@ -24,8 +25,9 @@
                 GestorTutoriales gestoTuto = new GestorTutoriales();
 
                 // Llamar al método ConsultaCategorias para obtener las categorías
-                String categorias = conexion.ConsultaCategorias();
+               // String categorias = conexion.ConsultaCategorias();
                 List<Tutorial> tutoriales = gestoTuto.listarTutoriales();
+                List<Categoria> categorias = conexion.listarCategorias();
 
             %>
 
@@ -163,21 +165,39 @@
                                             <div class="col-md-6 form-group">
                                                 <input type="text" name="Nombre" class="form-control" id="Nombre" placeholder="Nombre" required>
                                             </div>
+
                                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                                                <input type="num" class="form-control" name="Prio" id="Prio" placeholder="Prioridad" required>
-                                            </div>
+                                                <select class="form-select" name="Prio" placeholder="Prio" >
+                                                    <option value="" hidden>Prioridad</option>
+                                                    <option> 1</option>
+                                                    <option> 2</option>
+                                                    <option> 3</option>
+                                                    <option> 4</option>
+                                                    <option> 5</option>
+                                                    <option> 6</option>
+                                                    <option> 7</option>
+                                                    <option> 8</option>
+                                                    <option> 9</option>
+                                                    <option> 10</option>
+                                                </select>                                            
+                                            </div >
+
                                         </div>
                                         <div class="form-group mt-3">
-                                            <input type="text" class="form-control" name="Estado" id="Estado" placeholder="Estado" required>
+                                            <select class="form-select" name="Estado" placeholder="Estado" >
+                                                <option value="" hidden>Estado</option>
+                                                <option> No revisado</option>
+                                                <option> Revisado</option>
+                                            </select>                                            
                                         </div >
-                                       <div class="form-group mt-3">
-            <select class="form-select" name="Categoria" placeholder="Categoria">
-                <% String[] categoriasArray = categorias.split(", "); %>
-                <% for (int i = 0; i < categoriasArray.length; i++) { %>
-                    <option value="<%=i + 1%>"><%=categoriasArray[i]%></option>
-                <% } %>
-            </select>
-        </div>
+                                        <div class="form-group mt-3">
+                                            <select class="form-select" name="Categoria" placeholder="Categoria">
+                                                <% for (Categoria categoria : categorias) {%>
+                                                <option value="<%= categoria.getIdCategoria()%>"><%= categoria.getCategoria()%></option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+
 
                                         <div class="form-group mt-3">
                                             <input  type ="textarea" class="form-control" name="URL" rows="5" placeholder="Url" required>
@@ -273,11 +293,11 @@
                             <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nombre">
                             <input type="num" class="form-control" id="prioridadEdit" name="prioridadEdit" placeholder="Prioridad">
                             <input type="text" class="form-control" id="estadoEdit" name="estadoEdit" placeholder="Estado">
+                            
                             <select class="form-select" id="categoriaEdit" name="categoriaEdit" placeholder="Categoria">
-                                 <% String[] x = categorias.split(", "); %>
-                <% for (int i = 0; i < x.length; i++) { %>
-                    <option value="<%=i + 1%>"><%=x[i]%></option>
-                <% } %>
+                                <% for (Categoria categoria : categorias) {%>
+                                <option value="<%= categoria.getIdCategoria()%>"><%= categoria.getCategoria()%></option>
+                                <% }%>
                             </select>
                             <input type="url" class="form-control" id="urlEdit" name="urlEdit" placeholder="URL">
                             <!-- Otros campos de edición -->
