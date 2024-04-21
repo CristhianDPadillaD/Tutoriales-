@@ -72,17 +72,7 @@
         <!-- ======= Header ======= -->
         <header id="header" class="d-flex align-items-center">
 
-<%-- Verificar si hay un error y mostrar un mensaje correspondiente --%>
-<%
-    String error = request.getParameter("error");
-    if (error != null && error.equals("1")) {
-%>
-    <div class="alert alert-danger" role="alert">
-        Por favor, asegúrate de completar todos los campos antes de enviar el formulario.
-    </div>
-<%
-    }
-%>
+
 
             <div class="container d-flex flex-column align-items-center">
 
@@ -278,26 +268,25 @@
             }
         </script>
         
-    <script>
-           // Evento para cargar los detalles del tutorial seleccionado al abrir la modal de edición
-        $('#editarModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Botón que desencadenó el evento
-            var idCategoria = button.data('nombre'); // Obtener el ID del tutorial
-         
-                        
+  <script>
+    // Evento para cargar los detalles del tutorial seleccionado al abrir la modal de edición
+    $('#editarModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que desencadenó el evento
+        var idCategoria = button.data('nombre'); // Obtener el ID del tutorial
         $('#SvEditarCategoria').val(idCategoria);
-        
-        });
+    });
 
-      
-        </script>
-         <script>
-            function editarCategoria() {
-            $('#editarForm').submit(); // Enviar el formulario al servlet
-            
+    // Función para validar y enviar el formulario al servlet
+    function editarCategoria() {
+        var nombreEdit = $('#nombreEdit').val().trim();
+        if (nombreEdit === "") {
+            alert("Por favor, ingrese un nombre para la categoría.");
+            return false; // Evitar que se envíe el formulario si el nombre está vacío
         }
-        </script>
-     
+        // Si el nombre no está vacío, enviar el formulario al servlet
+        $('#editarForm').submit();
+    }
+</script>
 
 
 

@@ -285,7 +285,7 @@
             <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"> 
                         <h2 class="modal-title" id="editarModalLabel"style="color: #000;">Editar Tutorial</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -391,9 +391,16 @@
 
         </script>
          <script>
-            function editarContacto() {
-            $('#editarForm').submit(); // Enviar el formulario al servlet
+                 function editarContacto() {
+        var nombreEdit = $('#nombreEdit').val().trim();
+        if (nombreEdit === "") {
+            alert("Por favor, ingrese un nombre para el tutorial.");
+            return false; // Evitar que se envíe el formulario si el nombre está vacío
         }
+        // Si el nombre no está vacío, enviar el formulario al servlet
+        $('#editarForm').submit();
+    }
+          
         </script>
            </body>
 
