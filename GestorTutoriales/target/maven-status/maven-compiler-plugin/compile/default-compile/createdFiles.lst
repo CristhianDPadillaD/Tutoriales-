@@ -9,5 +9,6 @@ Servlet\SvEliminarCategoria.class
 Servlet\SvEliminarTutorial.class
 Servlet\SvListar.class
 com\mycompany\gestortutoriales\GestorCategorias.class
+Servlet\SvEditarCategoria.class
 Servlet\SvAgregar.class
 com\mycompany\gestortutoriales\Categoria.class

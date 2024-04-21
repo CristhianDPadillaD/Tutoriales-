@@ -192,6 +192,7 @@
                                         </div >
                                         <div class="form-group mt-3">
                                             <select class="form-select" name="Categoria" placeholder="Categoria">
+                                                             <option value="" hidden>Categoria</option>
                                                 <% for (Categoria categoria : categorias) {%>
                                                 <option value="<%= categoria.getIdCategoria()%>"><%= categoria.getCategoria()%></option>
                                                 <% } %>
@@ -233,17 +234,19 @@
                 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
+                
+                     <!-- Modal para mostrar la información de las tutoriales  -->      
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
                  <div class="modal-dialog"> 
                      <div class="modal-content"> 
                          <div class="modal-header"> 
-                            <h5 class="modal-title" id="exampleModalLabel">Detalles del Libro</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"style="color: #000;">Detalles del tutorial</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
                          </div>
                          <div class="modal-body"> 
 
                              <div id="libro-details"> 
-                                 <!-- AquÃ­ se aÃ±ade los detalles del perro-->
+                                 <!-- AquÃ­ se aÃ±ade los detalles del Tutorial-->
                         </div>
                          </div> 
                          <div class="modal-footer">
@@ -258,7 +261,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="eliminarLabel">Eliminar Tutorial</h2>
+                        <h2 class="modal-title" id="eliminarLabel"style="color: #000;">Eliminar Tutorial</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -283,29 +286,47 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="editarModalLabel">Editar Tutorial</h2>
+                        <h2 class="modal-title" id="editarModalLabel"style="color: #000;">Editar Tutorial</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <!-- Campos de edición para el tutorial -->
                         <form id="editarForm" action="SvEditarTutorial" method="Get">
-                            <input type="hidden" id="idTutorialEdit" name="idTutorial">
-                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nombre">
-                            <input type="num" class="form-control" id="prioridadEdit" name="prioridadEdit" placeholder="Prioridad">
-                            <input type="text" class="form-control" id="estadoEdit" name="estadoEdit" placeholder="Estado">
+                            <input type="hidden" id="SvEditarTutorial" name="idCategoria">
+                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nombre" required>
+                                     <select class="form-select" name="Prio" placeholder="Prio" >
+                                                    <option value="" hidden>Prioridad</option>
+                                                    <option> 1</option>
+                                                    <option> 2</option>
+                                                    <option> 3</option>
+                                                    <option> 4</option>
+                                                    <option> 5</option>
+                                                    <option> 6</option>
+                                                    <option> 7</option>
+                                                    <option> 8</option>
+                                                    <option> 9</option>
+                                                    <option> 10</option>
+                                                </select>  
+                                        <select class="form-select" name="Estado" placeholder="Estado" >
+                                                <option value="" hidden>Estado</option>
+                                                <option> No revisado</option>
+                                                <option> Revisado</option>
+                                            </select>
                             
                             <select class="form-select" id="categoriaEdit" name="categoriaEdit" placeholder="Categoria">
+                                   <option value="" hidden>Categoria</option>
                                 <% for (Categoria categoria : categorias) {%>
                                 <option value="<%= categoria.getIdCategoria()%>"><%= categoria.getCategoria()%></option>
                                 <% }%>
                             </select>
                             <input type="url" class="form-control" id="urlEdit" name="urlEdit" placeholder="URL">
                             <!-- Otros campos de edición -->
-                        </form>
+                                                     </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
+                        <button type="button" class="btn btn-primary" onclick="editarContacto()">Guardar Cambios</button>
+
                     </div>
                 </div>
             </div>
@@ -351,8 +372,6 @@
             // Establecer el valor del campo oculto con el nombre del contacto
             $('#SvEliminarTutorial').val(nombreContacto);
         });
-
-
         </script>   
 
         <script>
@@ -366,54 +385,16 @@
         $('#editarModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Botón que desencadenó el evento
             var idTutorial = button.data('nombre'); // Obtener el ID del tutorial
-
-            // Realizar una solicitud AJAX para obtener los detalles del tutorial por su ID
-            $.ajax({
-                url: 'SvEditarTutorial?idTutorial=' + idTutorial,
-                method: 'GET',
-                success: function (response) {
-                    console.log(response)
-                    // Cargar los detalles del tutorial en los campos de edición
-                    $('#idTutorialEdit').val(response.idTutorial);
-                    $('#nombreEdit').val(response.nombre);
-                    $('#prioridadEdit').val(response.prioridad);
-                    $('#estadoEdit').val(response.estado);
-                    $('#categoriaEdit').val(response.categoria);
-                    $('#urlEdit').val(response.url);
-                    // Otros campos de edición
-                },
-             error: function (error) {
-    console.log('Error al cargar los detalles del tutorial:', error);
-}
-
-            });
+                        
+        $('#SvEditarTutorial').val(idTutorial);
         });
 
-        // Función para guardar los cambios realizados en la modal de edición
-        function guardarCambios() {
-            // Serializar los datos del formulario de edición
-            var formData = $('#editarForm').serialize();
-
-            // Realizar una solicitud AJAX para enviar los datos al servlet y guardar los cambios
-            $.ajax({
-                url: 'SvEditarTutorial',
-                method: 'POST',
-                data: formData,
-                success: function (response) {
-                    console.log('Cambios guardados correctamente');
-                    $('#editarModal').modal('hide'); // Cerrar la modal de edición
-                },
-                error: function () {
-                    console.log('Error al guardar los cambios');
-                }
-            });
+        </script>
+         <script>
+            function editarContacto() {
+            $('#editarForm').submit(); // Enviar el formulario al servlet
         }
         </script>
-        
-        
-
-
-
-            </body>
+           </body>
 
         </html>

@@ -42,12 +42,6 @@ public class SvEditarTutorial extends HttpServlet {
     int nuevaPrioridad = Integer.parseInt(request.getParameter("prioridadEdit"));
     int nuevoIdCategoria = Integer.parseInt(request.getParameter("categoriaEdit"));
     
-        System.out.println(idTutorial);
-                System.out.println(nuevoNombre);
-                        System.out.println(nuevoEstado);
-                                System.out.println(nuevaUrl);
-                                        System.out.println(nuevaPrioridad);
-                                        System.out.println(nuevoIdCategoria);
     // Crear una instancia de GestorTutoriales para modificar el tutorial
     GestorTutoriales gestor = new GestorTutoriales();
     try {

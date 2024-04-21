@@ -72,6 +72,17 @@
         <!-- ======= Header ======= -->
         <header id="header" class="d-flex align-items-center">
 
+<%-- Verificar si hay un error y mostrar un mensaje correspondiente --%>
+<%
+    String error = request.getParameter("error");
+    if (error != null && error.equals("1")) {
+%>
+    <div class="alert alert-danger" role="alert">
+        Por favor, asegúrate de completar todos los campos antes de enviar el formulario.
+    </div>
+<%
+    }
+%>
 
             <div class="container d-flex flex-column align-items-center">
 
@@ -95,7 +106,7 @@
             <tr>
                 <td><%= categoria.getIdCategoria() %></td>
                 <td><%= categoria.getCategoria() %></td>
-                 <td> <a href="#" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-nombre="<>"><i class="fa-solid fa-pencil"></i></a>
+                 <td> <a href="#" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-nombre="<%= categoria.getIdCategoria()%>"><i class="fa-solid fa-pencil"></i></a>
                            <a href="#" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarTareaModal" data-nombre="<%= categoria.getIdCategoria()%>"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
            
@@ -186,32 +197,14 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
-            <div class="modal-dialog"> 
-                <div class="modal-content"> 
-                    <div class="modal-header"> 
-                        <h5 class="modal-title" id="exampleModalLabel">Detalles del Libro</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
-                    </div>
-                    <div class="modal-body"> 
-
-                        <div id="libro-details"> 
-                            <!-- AquÃ­ se aÃ±ade los detalles del perro-->
-                        </div>
-                    </div> 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> 
-                    </div>
-                </div> 
-            </div> 
-        </div>
+  
 
         <!-- Modal de confirmacion de la accion eliminar  -->           
         <div class="modal fade" id="eliminarTareaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="eliminarLabel">Eliminar Tutorial</h2>
+                        <h2 class="modal-title" id="eliminarLabel" style="color: #000;">Eliminar Categoria</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -230,7 +223,29 @@
             </div>
         </div>
 
+      <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="editarModalLabel" style="color: #000;">Editar Categoria </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Campos de edición para el tutorial -->
+                        <form id="editarForm" action="SvEditarCategoria" method="Get">
+                            <input type="hidden" id="SvEditarCategoria" name="idCategoria">
+                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nombre" required>
+                            <!-- Otros campos de edición -->
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="editarCategoria()">Guardar Cambios</button>
 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -247,6 +262,7 @@
             $('#eliminarTareaModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Botón que desencadenó el evento
                 var nombreContacto = button.data('nombre'); // Obtén el nombre del contacto desde data-nombre
+              
 
                 // Establecer el valor del campo oculto con el nombre del contacto
                 $('#SvEliminar').val(nombreContacto);
@@ -261,7 +277,26 @@
                 $('#eliminarForm').submit(); // Enviar el formulario al servlet
             }
         </script>
+        
+    <script>
+           // Evento para cargar los detalles del tutorial seleccionado al abrir la modal de edición
+        $('#editarModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Botón que desencadenó el evento
+            var idCategoria = button.data('nombre'); // Obtener el ID del tutorial
+         
+                        
+        $('#SvEditarCategoria').val(idCategoria);
+        
+        });
 
+      
+        </script>
+         <script>
+            function editarCategoria() {
+            $('#editarForm').submit(); // Enviar el formulario al servlet
+            
+        }
+        </script>
      
 
 

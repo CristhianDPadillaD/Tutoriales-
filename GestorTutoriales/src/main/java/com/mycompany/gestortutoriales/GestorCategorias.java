@@ -39,6 +39,25 @@ public class GestorCategorias {
         }
     }
      
+public void modificarCategoria(int idCategoria, String nuevaCategoria) throws SQLException {
+    String query = "UPDATE Categorias SET Categoria = ? WHERE IdCategoria = ?";
+    try (Connection connection = new Conexion().Conectar();
+            PreparedStatement statement = connection.prepareStatement(query)) {
+        // Establecer los parámetros en la consulta preparada
+        statement.setString(1, nuevaCategoria);
+        statement.setInt(2, idCategoria);
+
+        // Ejecutar la consulta
+        int filasModificadas = statement.executeUpdate();
+        if (filasModificadas != 1) {
+            throw new SQLException("No se pudo modificar la categoría con ID: " + idCategoria);
+        }
+    } catch (SQLException e) {
+        // Manejar la excepción
+        e.printStackTrace();
+        throw e; // Relanzar la excepción para que sea manejada por quien llame al método
+    }
+}
 
     public void eliminarCategoria(int idCategoria) {
         try {
