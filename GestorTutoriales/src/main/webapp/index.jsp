@@ -33,15 +33,12 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light barra-navegacion">
-            <a class="navbar-brand" href="#">Tus tutoriales</a>
+            <a class="navbar-brand" href="index.jsp">Tus tutoriales</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="tutoriales.jsp">Tutoriales <span class="sr-only"></span></a>
                     </li>
@@ -51,5 +48,43 @@
                 </ul>
             </div>
         </nav>
+
+        <!-- ======= Header ======= -->
+        <header id="header" class="d-flex align-items-center">
+
+
+            <div class="container d-flex flex-column align-items-center">
+                <h1>¿De qué se trata?</h1>
+                <h2>En esta página puedes compartir tus tutoriales con personas que necesiten de tu ayuda.</h2>
+                <img class="imagen1" width="500px" src="https://static.vecteezy.com/system/resources/previews/003/805/406/non_2x/online-tutorial-concept-learning-courses-tutorials-illustration-flat-vector.jpg">
+            </div>
+        </header><!-- End #header -->
+
+        <!-- ======= Header ======= -->
+        <header id="header" class="d-flex align-items-center">
+
+
+            <div class="container d-flex flex-column align-items-center">
+                <h1>¿Cómo puedes agregar un tutorial?</h1>
+                <h2 style="text-align: center;">En la barra de navegación dirígete a la sección de tutoriales, 
+                    ahí encontrarás un formulario en el que registrarás la información 
+                    de tu tutorial (nombre, prioridad, estado, categoría y URL).</h2>
+                <img class="imagen1" width="700px" src="estilos/imagenes/tutorial.png">
+            </div>
+        </header><!-- End #header -->
+
+        <!-- ======= Header ======= -->
+        <header id="header" class="d-flex align-items-center">
+
+
+            <div class="container d-flex flex-column align-items-center">
+                <h1>¿Cómo puedes agregar una categoría?</h1>
+                <h2 style="text-align: center;">En la barra de navegación dirígete a la sección de categorías.<br>
+                    Dirígete hacia abajo, y podrás ver un apartado llamado "Agregar una nueva categoría".
+                    Escribe la nueva categoría que desees y presiona el botón de enviar para agregarla.</h2>
+                <img class="imagen1" width="700px" src="estilos/imagenes/categoria.png">
+            </div>
+        </header><!-- End #header -->
+
     </body>
 </html>

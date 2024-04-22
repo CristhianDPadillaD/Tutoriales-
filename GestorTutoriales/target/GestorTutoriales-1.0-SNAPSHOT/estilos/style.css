@@ -4,6 +4,7 @@ body {
   background: url("../img/bg.jpg") top center no-repeat;
   background-size: cover;
   position: relative;
+
 }
 
 .modal-body {
@@ -326,13 +327,15 @@ input[type="submit"] {
 
 /*
 
-----------------------------------iconos---------------------------------------
+----------------------------------iconos e imagenes---------------------------------------
 */
 
+.imagen1{
+    max-width: 200px;
+}
 .mi-icono {
         color: blue; 
     }
-
 
 /*--------------------------------------------------------------
 # Sections General
