@@ -51,8 +51,8 @@
         <script src="Script/Script.js" type="text/javascript"></script>
     </head>
     <body  >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+        <nav class="navbar navbar-expand-lg navbar-light barra-navegacion">
+            <a class="navbar-brand" href="#">Tus tutoriales</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -60,6 +60,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="tutoriales.jsp">Tutoriales <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="categoria.jsp">Categorias </a>
@@ -77,7 +80,7 @@
             <div class="container d-flex flex-column align-items-center">
 
                 <h1>Categorias</h1>
-                <h2>pagina de Categorias</h2>
+                <h2>Estas son las categorias disponibles para tus tutoriales.</h2>
                 <table class="table">
                     <thead>
                     <th scope="col">Id</th>
@@ -115,50 +118,24 @@
                 <div class="container">
 
                     <div class="section-title">
-                        <h2>Agrega un </h2>
+                        <h2>Agrega una nueva categoria. </h2>
                     </div>
 
-                    <div class="row justify-content-center">
-
-                        <div class="col-lg-10">
-
-                            <div class="info-wrap">
-                                <div class="row">
-                                    <div class="col-lg-4 info">
-                                        <i class="bi bi-geo-alt"></i>
-                                        <h4>Location:</h4>
-                                        <p>A108 Adam Street<br>New York, NY 535022</p>
-                                    </div>
-
-                                    <div class="col-lg-4 info mt-4 mt-lg-0">
-                                        <i class="bi bi-envelope"></i>
-                                        <h4>Email:</h4>
-                                        <p>info@example.com<br>contact@example.com</p>
-                                    </div>
-
-                                    <div class="col-lg-4 info mt-4 mt-lg-0">
-                                        <i class="bi bi-phone"></i>
-                                        <h4>Call:</h4>
-                                        <p>+1 5589 55488 51<br>+1 5589 22475 14</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
-                            <form action="SvAgregarCategoria" method="get">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <input type="text" name="categoria" class="form-control" id="categoria" placeholder="Categoria" required>
+                            <form action="SvAgregarCategoria" method="get" class="php-email-form">
+                                <div class="row text-">
+                                    <div class="text-center">
+                                        <input style="background-color: white;" type="text" name="categoria" class="form-control" id="categoria" placeholder="Categoria" required>
                                     </div>
                                 </div>
                     
                                     
-                                <div class="text-center"><input type="submit" name="name" value="Enviar"></div>
+                                <div class="text-center">
+                                    <input style="background-color: #a1181a;" type="submit" name="name" value="Enviar">
+                                </div>
+
                             </form>
                         </div>
 
@@ -172,12 +149,10 @@
 
         <!-- ======= Footer ======= -->
         <footer id="footer">
-            <div class="container">
                 <div class="credits">
 
                     Designed by <a> Padilla, Calpa</a>
                 </div>
-            </div>
         </footer><!-- End #footer -->
 
 
