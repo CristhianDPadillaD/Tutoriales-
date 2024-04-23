@@ -185,6 +185,9 @@
             </div>
         </div>
 
+        
+                <!-- Modal de editar  -->           
+
       <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -196,7 +199,7 @@
                         <!-- Campos de edición para el tutorial -->
                         <form id="editarForm" action="SvEditarCategoria" method="Get">
                             <input type="hidden" id="SvEditarCategoria" name="idCategoria">
-                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nombre" required>
+                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nuevo nombre para la categoria">
                             <!-- Otros campos de edición -->
                     </form>
                     </div>

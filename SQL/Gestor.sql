@@ -23,7 +23,7 @@
 		FOREIGN KEY (IdCategoria)
 			REFERENCES Categorias (IdCategoria)
 	);
-
+	
 	-- Crear el procedimiento almacenado para agregar un nuevo tutorial
 	DELIMITER //
 

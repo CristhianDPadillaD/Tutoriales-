@@ -294,9 +294,9 @@
                         <!-- Campos de edición para el tutorial -->
                         <form id="editarForm" action="SvEditarTutorial" method="Get">
                             <input type="hidden" id="SvEditarTutorial" name="idTutorial">
-                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nombre" required>
+                            <input type="text" class="form-control" id="nombreEdit" name="nombreEdit" placeholder="Nuevo nombre" required>
                             <select class="form-select" name="prioridadEdit" placeholder="Prio" >
-                                <option value="" hidden>Prioridad</option>
+                                <option value="" hidden>Nueva Prioridad</option>
                                 <option> 1</option>
                                 <option> 2</option>
                                 <option> 3</option>
@@ -309,18 +309,18 @@
                                 <option> 10</option>
                             </select>  
                             <select class="form-select" name="estadoEdit" placeholder="Estado" >
-                                <option value="" hidden>Estado</option>
+                                <option value="" hidden>Nuevo Estado</option>
                                 <option> No revisado</option>
                                 <option> Revisado</option>
                             </select>
 
                             <select class="form-select" id="categoriaEdit" name="categoriaEdit" placeholder="Categoria">
-                                <option value="" hidden>Categoria</option>
+                                <option value="" hidden>Nueva Categoria</option>
                                 <% for (Categoria categoria : categorias) {%>
                                 <option value="<%= categoria.getIdCategoria()%>"><%= categoria.getCategoria()%></option>
                                 <% }%>
                             </select>
-                            <input type="url" class="form-control" id="urlEdit" name="urlEdit" placeholder="URL">
+                            <input type="url" class="form-control" id="urlEdit" name="urlEdit" placeholder="Nueva URL">
                             <!-- Otros campos de edición -->
                         </form>
                     </div>
