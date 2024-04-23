@@ -53,7 +53,7 @@ public class SvEditarTutorial extends HttpServlet {
     }
     
     // Redirigir la solicitud de vuelta a la página principal
-    response.sendRedirect("index.jsp");
+    response.sendRedirect("tutoriales.jsp");
     }
 
    

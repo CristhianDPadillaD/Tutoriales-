@@ -124,7 +124,7 @@
                             <form action="SvAgregarCategoria" method="get" class="php-email-form">
                                 <div class="row text-">
                                     <div class="text-center">
-                                        <input style="background-color: white;" type="text" name="categoria" class="form-control" id="categoria" placeholder="Categoria" required>
+                                        <input style="background-color: white; color: black;" type="text" name="categoria" class="form-control" id="categoria" placeholder="Categoria" required>
                                     </div>
                                 </div>
                     

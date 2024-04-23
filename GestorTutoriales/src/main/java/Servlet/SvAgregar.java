@@ -44,7 +44,7 @@ public class SvAgregar extends HttpServlet {
 
         agregar.AgregarTutorial(Nombre, Url, Estado, Prioridad, IdCategoria, agregarCon);
 
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("tutoriales.jsp");
 
     }
 

@@ -56,7 +56,7 @@
             <div class="container d-flex flex-column align-items-center">
                 <h1>¿De qué se trata?</h1>
                 <h2>En esta página puedes compartir tus tutoriales con personas que necesiten de tu ayuda.</h2>
-                <img class="imagen1" width="500px" src="https://static.vecteezy.com/system/resources/previews/003/805/406/non_2x/online-tutorial-concept-learning-courses-tutorials-illustration-flat-vector.jpg">
+                <img  width="500px" src="https://static.vecteezy.com/system/resources/previews/003/805/406/non_2x/online-tutorial-concept-learning-courses-tutorials-illustration-flat-vector.jpg">
             </div>
         </header><!-- End #header -->
 
@@ -69,7 +69,7 @@
                 <h2 style="text-align: center;">En la barra de navegación dirígete a la sección de tutoriales, 
                     ahí encontrarás un formulario en el que registrarás la información 
                     de tu tutorial (nombre, prioridad, estado, categoría y URL).</h2>
-                <img class="imagen1" width="700px" src="estilos/imagenes/tutorial.png">
+                <img width="700px"  src="estilos/imagenes/TUTORIAL1.png">
             </div>
         </header><!-- End #header -->
 
@@ -82,7 +82,7 @@
                 <h2 style="text-align: center;">En la barra de navegación dirígete a la sección de categorías.<br>
                     Dirígete hacia abajo, y podrás ver un apartado llamado "Agregar una nueva categoría".
                     Escribe la nueva categoría que desees y presiona el botón de enviar para agregarla.</h2>
-                <img class="imagen1" width="700px" src="estilos/imagenes/categoria.png">
+                <img  width="700px" src="estilos/imagenes/categorias.png">
             </div>
         </header><!-- End #header -->
 

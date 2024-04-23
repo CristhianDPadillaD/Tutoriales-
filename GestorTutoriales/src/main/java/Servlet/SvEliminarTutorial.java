@@ -35,7 +35,7 @@ public class SvEliminarTutorial extends HttpServlet {
       GestorTutoriales borrar = new GestorTutoriales ();
       borrar.borrarTutorial(Prioridad);
       
-         response.sendRedirect("index.jsp");
+         response.sendRedirect("tutoriales.jsp");
       
        
     }

@@ -4,43 +4,49 @@
  */
 package com.mycompany.gestortutoriales;
 
-
 import java.sql.Connection;
-import java.sql.DriverManager; 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 /**
- *
- * @author ADMIN
+ * Esta clase proporciona métodos para establecer una conexión a una base de datos MySQL.
  */
 public class Conexion {
-    // Configura tus propias credenciales aquí
-
+    // Configuración de las credenciales y la URL de la base de datos
     String bd = "gestor";
     String URL = "jdbc:mysql://localhost:3306/Gestor";
     String USUARIO = "root";
     String CONTRASEÑA = "admin";
     String driver = "com.mysql.cj.jdbc.Driver";
-    Connection cx;      // Configura tus propias credenciales aquí
+    Connection cx; // Objeto Connection para la conexión a la base de datos
 
+    /**
+     * Constructor de la clase.
+     */
     public Conexion() {
 
     }
 
+    /**
+     * Este método establece una conexión a la base de datos.
+     *
+     * @return La conexión establecida.
+     */
     public Connection Conectar() {
         try {
+            // Cargar el controlador JDBC
             Class.forName(driver);
         } catch (ClassNotFoundException ex) {
-            System.out.println("No se encontro a BD" + bd);
+            System.out.println("No se encontró el controlador JDBC: " + ex.getMessage());
         }
         try {
-            // Establece la conexión y almacénala en la variable conexion
+            // Establecer la conexión y almacenarla en la variable cx
             cx = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA);
         } catch (SQLException e) {
-            System.out.println("Error al conectar la base de datos " + e.getMessage());
+            System.out.println("Error al conectar la base de datos: " + e.getMessage());
         }
-        System.out.println("conexion exitosa sos un crack: " + cx);
+        // Imprimir mensaje de conexión exitosa
+        System.out.println("¡Conexión exitosa!");
         return cx;
     }
 

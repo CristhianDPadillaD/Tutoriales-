@@ -161,7 +161,7 @@
                             <form action="SvAgregar" method="get" class="php-email-form">
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <input style="background-color: #c9c7c7;" type="text" name="Nombre" class="form-control input-custom-bg-color" id="Nombre" placeholder="Nombre" required>
+                                        <input style="background-color: #c9c7c7; color: black;" type="text" name="Nombre" class="form-control input-custom-bg-color" id="Nombre" placeholder="Nombre" required>
                                     </div>
 
                                     <div class="col-md-6 form-group mt-3 mt-md-0">
@@ -199,7 +199,7 @@
 
 
                                 <div class="form-group mt-3">
-                                    <input style="background-color: #c9c7c7;" type ="textarea" class="form-control" name="URL" rows="5" placeholder="Url" required>
+                                    <input style="background-color: #c9c7c7; color: black;" type ="textarea" class="form-control" name="URL" rows="5" placeholder="Url" required>
 
                                 </div>
                                 <div class="text-center ">
